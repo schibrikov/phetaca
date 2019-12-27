@@ -1,0 +1,20 @@
+{
+  "name": "phetaca",
+  "version": "0.0.1",
+  "description": "The Complete JavaScript data-fetching solution",
+  "main": "src/index.js",
+  "author": "Eugeny Schibrikov <shook@live.ru>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@arkweid/lefthook": "^0.7.0",
+    "@types/jest": "^24.0.25",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.4"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
