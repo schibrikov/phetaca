@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "ESNext",
     "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["DOM", "ES6"],
     "strict": true,
     "outDir": "dist",
     "sourceMap": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
-  "exclude": ["**/*.test.ts"]
+  "exclude": ["**/*.spec.ts"]
 }
