@@ -1,4 +1,5 @@
 # Phetaca
+![Check and build Phetaca](https://github.com/sHooKDT/phetaca/workflows/Check%20and%20build%20Phetaca/badge.svg?branch=master)
 
 ## Complete JavaScript REST fetching solution
 
