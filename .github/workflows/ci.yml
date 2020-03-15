@@ -1,0 +1,20 @@
+name: Check and build Phetaca
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Installing dependencies
+        run: yarn install --frozen-lockfile
+      - name: Running tests
+        run: yarn test
+      - name: Building library
+        run: yarn build
+      - name: Checking size
+        run: yarn size
