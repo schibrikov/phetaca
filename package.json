@@ -1,8 +1,11 @@
 {
   "name": "phetaca",
-  "version": "0.0.1",
+  "version": "0.1.0-alpha",
   "description": "The Complete JavaScript data-fetching solution",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "author": "Eugeny Schibrikov <shook@live.ru>",
   "license": "MIT",
   "private": false,
@@ -16,13 +19,19 @@
       "name": "@phetaca/react",
       "path": "dist/react/*.js",
       "limit": "300B",
-      "ignore": ["react", "ky"]
+      "ignore": [
+        "react",
+        "ky"
+      ]
     },
     {
       "name": "@phetaca/core",
       "path": "dist/*.js",
       "limit": "2KB",
-      "ignore": ["react", "ky"]
+      "ignore": [
+        "react",
+        "ky"
+      ]
     }
   ],
   "devDependencies": {
@@ -31,7 +40,7 @@
     "@testing-library/react-hooks": "^3.2.1",
     "@types/jest": "^24.0.25",
     "@types/node": "^13.9.1",
-    "jest": "^24.9.0",
+    "jest": "^25.1.0",
     "jest-fetch-mock": "^3.0.3",
     "ky-universal": "^0.5.0",
     "prettier": "^1.19.1",
