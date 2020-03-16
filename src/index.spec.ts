@@ -24,6 +24,12 @@ const correctCustomers = [
   { id: 2, name: "Smith" }
 ];
 
+function waitALittleBit() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 10);
+  });
+}
+
 test("subscription works with correct data", async () => {
   const resource = createNewResource();
   fetchMock.mockResponseOnce(JSON.stringify(correctCustomers));
@@ -54,16 +60,20 @@ test("creation with subscription works", async () => {
   expect(resource.store.getAllIds()).toContain(51);
 });
 
-test("highlevel request data immediately tries to fetch data", async () => {
+test("highlevel request data immediately tries to fetch data", done => {
   const resource = createNewResource();
   const fn = jest.fn();
 
   fetchMock.mockResponseOnce(JSON.stringify(correctCustomers));
-  const subscription = await resource.requestCollection(fn);
+  const subscription = resource.requestCollection(fn);
 
-  expect(subscription.ok).toBeTruthy();
-  expect(subscription.ok && subscription.result).toBeInstanceOf(Function);
-  expect(fn).toBeCalledTimes(1);
+  expect(subscription).toBeInstanceOf(Function);
+
+  setTimeout(() => {
+    expect(fn).toBeCalledTimes(1);
+    expect(resource.store.getAll()).toEqual(correctCustomers);
+    done();
+  }, 10);
 });
 
 test("subscription works after crud ops", async () => {
@@ -73,8 +83,10 @@ test("subscription works after crud ops", async () => {
 
   fetchMock.mockResponseOnce(JSON.stringify([]));
 
-  await resource.requestCollection(collectionSubscriber);
-  await resource.store.subscribe(1, idSubscriber);
+  resource.requestCollection(collectionSubscriber);
+  resource.store.subscribe(1, idSubscriber);
+
+  await waitALittleBit();
   expect(collectionSubscriber).toBeCalled();
   expect(idSubscriber).not.toBeCalled();
   expect(resource.store.getAllIds()).toEqual([]);
@@ -96,6 +108,7 @@ test("subscription works after crud ops", async () => {
   // Should be called on creation and on update
   expect(idSubscriber).toBeCalledTimes(2);
 
+  fetchMock.mockResponseOnce(JSON.stringify(true));
   await resource.remove(user);
   expect(resource.store.getAll()).toEqual([]);
   expect(idSubscriber).toBeCalledTimes(3);

@@ -42,16 +42,17 @@
     "@types/node": "^13.9.1",
     "jest": "^25.1.0",
     "jest-fetch-mock": "^3.0.3",
-    "ky-universal": "^0.5.0",
     "prettier": "^1.19.1",
     "react": "^16.13.0",
     "react-test-renderer": "^16.13.0",
+    "runtypes": "^4.2.0",
     "size-limit": "^4.3.1",
-    "ts-jest": "^24.2.0",
+    "ts-jest": "^25.2.1",
     "typescript": "^3.7.4"
   },
-  "dependencies": {
-    "ky": "^0.16.1",
-    "runtypes": "^4.0.3"
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^16.13.0",
+    "runtypes": "^4.2.0"
   }
 }

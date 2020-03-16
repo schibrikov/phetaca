@@ -5,7 +5,7 @@ export function useCollection<TID, TEntity>(resource: Resource<TID, TEntity>) {
   const [collection, setCollection] = useState<TEntity[]>([]);
 
   useLayoutEffect(() => {
-    return resource.store.subscribeToAll(store => {
+    return resource.requestCollection(store => {
       setCollection(store.getAll());
     });
   }, []);

@@ -4,6 +4,16 @@ import { createResource } from "../index";
 import { useCollection } from "./useCollection";
 import fetchMock from "jest-fetch-mock";
 
+function waitALittleBit() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 10);
+  });
+}
+
+beforeAll(() => {
+  fetchMock.resetMocks();
+});
+
 const correctCustomers = [
   { id: 1, name: "John" },
   { id: 2, name: "Smith" }
@@ -33,12 +43,12 @@ test("react / create entity", async () => {
     req.json().then(user => JSON.stringify({ id: 341, ...user }))
   );
   await act(async () => {
-    await result.current.create({
+    const operationResult = await result.current.create({
       name: "John"
     });
-  });
 
-  expect(fetchMock).toBeCalledTimes(1);
+    expect(operationResult.ok).toBeTruthy();
+  });
   expect(resource.store.get(341)).toBeTruthy();
   expect(result.current.data).toContainEqual({ id: 341, name: "John" });
 });
