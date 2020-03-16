@@ -3,6 +3,9 @@
   "version": "0.1.0-alpha",
   "description": "The Complete JavaScript data-fetching solution",
   "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
@@ -12,7 +15,8 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "size": "size-limit"
+    "size": "size-limit",
+    "prepublishOnly": "npm run test && npm run build && npm run size"
   },
   "size-limit": [
     {
@@ -34,6 +38,7 @@
       ]
     }
   ],
+  "dependencies": {},
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.0",
     "@size-limit/preset-small-lib": "^4.3.1",
@@ -50,9 +55,8 @@
     "ts-jest": "^25.2.1",
     "typescript": "^3.7.4"
   },
-  "dependencies": {},
   "peerDependencies": {
-    "react": "^16.13.0",
-    "runtypes": "^4.2.0"
+    "react": "16.x",
+    "runtypes": "4.x"
   }
 }
